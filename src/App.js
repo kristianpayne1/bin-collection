@@ -6,8 +6,8 @@ import Refuse from './refuse.js';
 class App extends Component {
   state = {
     date: '',
-    recycleDate: new Date("2020-09-25"),
-    refuseDate: new Date("2020-10-02"),
+    recycleDate: new Date(2020, 8, 25, 12),
+    refuseDate: new Date(2020, 9, 2, 12),
     nextRecycleDate: '',
     nextRefuseDate: '',
     isRecycle: false,
@@ -33,9 +33,10 @@ class App extends Component {
       return;
     } else {
       console.log("Increasing dates");
-      recycleDate = new Date(recycleDate + 12096e5);
-      refuseDate = new Date(refuseDate + 12096e5);
-      this.findNextDates(recycleDate, refuseDate);
+      let twoWeeks = 1000 * 60 * 60 * 24 * 14;
+      recycleDate = new Date(recycleDate.getTime() + twoWeeks);
+      refuseDate = new Date(refuseDate.getTime() + twoWeeks);
+      this.findNextDates(today, recycleDate, refuseDate);
     }
   }
 
